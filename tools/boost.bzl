@@ -7,7 +7,7 @@ if is_library:
   include_pattern1 = includes_pattern + "**/*.h"
   include_pattern2 = includes_pattern + "**/*pp" # hpp and ipp
 else:
-  includes_pattern = "upstream/%s/include"
+  includes_pattern = "third_party/%s/include"
   include_pattern1 = includes_pattern + "/boost/**/*.h"
   include_pattern2 = includes_pattern + "/boost/**/*pp"
 
