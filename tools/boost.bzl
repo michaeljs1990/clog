@@ -1,26 +1,17 @@
-is_library = False
-
-if is_library:
-  include_path = "@boost/include"
-  library_path = "@boost/lib"
-  includes_pattern = include_path + "/%s/"
-  include_pattern1 = includes_pattern + "**/*.h"
-  include_pattern2 = includes_pattern + "**/*pp" # hpp and ipp
-else:
-  includes_pattern = "third_party/%s/include"
-  include_pattern1 = includes_pattern + "/boost/**/*.h"
-  include_pattern2 = includes_pattern + "/boost/**/*pp"
+include_path = "boost/include"
+includes_pattern = include_path + "/%s/"
+include_pattern = includes_pattern + "**/*"
 
 def includes_list( library_name ):
-  return [ includes_pattern % library_name ]
+  return [ "upstream/" + library_name + "/include" ]
 
 def hdr_list( library_name ):
   return native.glob([
-    include_pattern1 % library_name,
-    include_pattern2 % library_name,
+    include_pattern % library_name,
   ])
 
-def boost_library( name, defines=None, includes=None, hdrs=None, srcs=None, deps=None, copts=None ):
+def boost_library(name, defines=None, includes=None, hdrs=None, 
+                  srcs=None, deps=None, copts=None ):
 
   if defines == None:
     defines = []
